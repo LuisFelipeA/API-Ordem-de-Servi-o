@@ -1,6 +1,6 @@
 <?php
 
-include 'conexao.php';
+require_once 'conexao.php';
 
 // Inserir
 function inserirCliente($nome, $cpf, $endereco) {
@@ -55,13 +55,9 @@ function listarClientePorId($id) {
 // Atualizar
 function atualizarCliente($id, $nome, $cpf, $endereco) {
     $conexao = conectarBanco();
-
     $query = "UPDATE telecontrol.clientes SET nome = $1, cpf = $2, endereco = $3 WHERE id = $4";
-    
     $valores = array($nome, $cpf, $endereco, $id);
-
     $resultado = pg_query_params($conexao, $query, $valores);
-
     pg_close($conexao);
 }
 
