@@ -16,8 +16,8 @@
             <li class="nav-item dropdown" style="list-style-type: none;">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Produtos</a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <li><a class="dropdown-item" href="incluirProduto.php" style="color: black;">Incluir</a></li>
-                <li><a class="dropdown-item" href="listarProdutos.php" style="color: black;">Listar</a></li>
+                <li><a class="dropdown-item" href="Produto/incluirProduto.php" style="color: black;">Incluir</a></li>
+                <li><a class="dropdown-item" href="Produto/listarProdutos.php" style="color: black;">Listar</a></li>
               </ul>
             </li>
           </span>
@@ -27,8 +27,8 @@
             <li class="nav-item dropdown" style="list-style-type: none;">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Clientes</a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <li><a class="dropdown-item" href="incluirCliente.php" style="color: black;">Incluir</a></li>
-                <li><a class="dropdown-item" href="listarClientes.php" style="color: black;">Listar</a></li>
+                <li><a class="dropdown-item" href="Cliente/incluirCliente.php" style="color: black;">Incluir</a></li>
+                <li><a class="dropdown-item" href="Cliente/listarClientes.php" style="color: black;">Listar</a></li>
               </ul>
             </li>
           </span>
@@ -38,8 +38,8 @@
             <li class="nav-item dropdown" style="list-style-type: none;">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Ordem de Serviço</a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <li><a class="dropdown-item" href="incluirOrdemDeServico.php" style="color: black;">Incluir</a></li>
-                <li><a class="dropdown-item" href="listarOrdemDeServico.php" style="color: black;">Listar</a></li>
+                <li><a class="dropdown-item" href="Ordem de Servico/incluirOrdemDeServico.php" style="color: black;">Incluir</a></li>
+                <li><a class="dropdown-item" href="Ordem de Servico/listarOrdensDeServico.php" style="color: black;">Listar</a></li>
               </ul>
             </li>
           </span>
