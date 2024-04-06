@@ -8,6 +8,11 @@ function inserirOrdemDeServico($numero_ordem, $data_abertura, $produto_id, $clie
     $query = "INSERT INTO telecontrol.ordem_servico (numero_ordem, data_abertura, produto_id, cliente_id) VALUES ($1, $2, $3, $4)";
     $valores = array($numero_ordem, $data_abertura, $produto_id, $cliente_id);
     $resultado = pg_query_params($conexao, $query, $valores);
+
+    if (!$resultado) {
+        return json_encode(array("error" => pg_last_error($conexao)));
+    }
+
     pg_close($conexao);
 }
 
@@ -58,6 +63,11 @@ function atualizarOrdemDeServico($id, $numero_ordem, $data_abertura, $produto_id
     $query = "UPDATE telecontrol.ordem_servico SET numero_ordem = $1, data_abertura = $2, produto_id = $3, cliente_id = $4 WHERE id = $5";
     $valores = array($numero_ordem, $data_abertura, $produto_id, $cliente_id, $id);
     $resultado = pg_query_params($conexao, $query, $valores);
+
+    if (!$resultado) {
+        return json_encode(array("error" => pg_last_error($conexao)));
+    }
+
     pg_close($conexao);
 }
 
@@ -68,6 +78,11 @@ function excluirOrdemDeServico($id) {
     $query = "DELETE FROM telecontrol.ordem_servico WHERE id = $1";
     $valores = array($id);
     $resultado = pg_query_params($conexao, $query, $valores);
+
+    if (!$resultado) {
+        return json_encode(array("error" => pg_last_error($conexao)));
+    }
+
     pg_close($conexao);
 }
 

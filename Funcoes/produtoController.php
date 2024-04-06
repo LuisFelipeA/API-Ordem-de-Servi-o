@@ -9,6 +9,10 @@ function inserirProduto($codigo, $descricao, $statusProduto, $tempo_garantia) {
     $valores = array($codigo, $descricao, $statusProduto, $tempo_garantia);
     $resultado = pg_query_params($conexao, $query, $valores);
     pg_close($conexao);
+
+    if (!$resultado) {
+        return json_encode(array("error" => pg_last_error($conexao)));
+    }
 }
 
 // Listar Todos Produtos
@@ -58,7 +62,13 @@ function atualizarProduto($id, $codigo, $descricao, $statusProduto, $tempo_garan
     $query = "UPDATE telecontrol.produtos SET codigo = $1, descricao = $2, statusProduto = $3, tempo_garantia = $4 WHERE id = $5";
     $valores = array($codigo, $descricao, $statusProduto, $tempo_garantia, $id);
     $resultado = pg_query_params($conexao, $query, $valores);
+
+    if (!$resultado) {
+        return json_encode(array("error" => pg_last_error($conexao)));
+    }
+
     pg_close($conexao);
+
 }
 
 // Excluir
@@ -67,6 +77,11 @@ function excluirProduto($id) {
     $query = "DELETE FROM telecontrol.produtos WHERE id = $1";
     $valores = array($id);
     $resultado = pg_query_params($conexao, $query, $valores);
+
+    if (!$resultado) {
+        return json_encode(array("error" => pg_last_error($conexao)));
+    }
+
     pg_close($conexao);
 }
 

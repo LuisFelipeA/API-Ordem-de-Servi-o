@@ -8,6 +8,11 @@ function inserirCliente($nome, $cpf, $endereco) {
     $query = "INSERT INTO telecontrol.clientes (nome, cpf, endereco) VALUES ($1, $2, $3)";
     $valores = array($nome, $cpf, $endereco);
     $resultado = pg_query_params($conexao, $query, $valores);
+
+    if (!$resultado) {
+        return json_encode(array("error" => pg_last_error($conexao)));
+    }
+
     pg_close($conexao);
 }
 
@@ -58,6 +63,11 @@ function atualizarCliente($id, $nome, $cpf, $endereco) {
     $query = "UPDATE telecontrol.clientes SET nome = $1, cpf = $2, endereco = $3 WHERE id = $4";
     $valores = array($nome, $cpf, $endereco, $id);
     $resultado = pg_query_params($conexao, $query, $valores);
+
+    if (!$resultado) {
+        return json_encode(array("error" => pg_last_error($conexao)));
+    }
+
     pg_close($conexao);
 }
 
@@ -67,6 +77,11 @@ function excluirCliente($id) {
     $query = "DELETE FROM telecontrol.clientes WHERE id = $1";
     $valores = array($id);
     $resultado = pg_query_params($conexao, $query, $valores);
+
+    if (!$resultado) {
+        return json_encode(array("error" => pg_last_error($conexao)));
+    }
+
     pg_close($conexao);
 }
 
