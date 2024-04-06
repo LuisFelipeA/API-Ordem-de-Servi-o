@@ -2,6 +2,8 @@
 
 include 'Funcoes/clienteController.php';
 include 'Funcoes/produtoController.php';
+include 'Funcoes/ordemDeServicoController.php';
+
 
 
 //inserirCliente("Felipe", "4567", "Av. 123");
@@ -18,6 +20,11 @@ include 'Funcoes/produtoController.php';
 //echo listarProdutoPorId("1");
 //excluirProduto("1");
 
+//inserirOrdemDeServico("200", "20-01-2007", "1", "3");
+//atualizarOrdemDeServico("2", "300", "20-01-2005", "1", "3");
+//excluirOrdemDeServico("1");
+//echo listarOrdemDeServicos();
+//echo listarOrdemDeServicoPorId("2");
 
 
 ?>
