@@ -1,0 +1,101 @@
+@font-face {
+    font-family: 'SecularOne-Regular';
+    src: url(../SecularOne-Regular.ttf);
+}
+@font-face {
+    font-family: 'Barlow-Regular';
+    src: url(../BarlowSemiCondensed-Regular.ttf);
+}
+
+.bg {
+    background-attachment: fixed;
+    background-color:#30353b; 
+}
+
+
+
+.navbar-bg {
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    background-color:#3b5440;
+    border-bottom: solid 4px #ebd3b8; 
+}
+
+.nav-text {
+    color:aliceblue;
+}
+
+.sig-title {
+    font-family: "SecularOne-Regular", sans-serif;
+
+}
+
+.cont-marg {
+    margin-top: 3%;
+}
+
+.glass {
+    background-image: linear-gradient( #cef8eb4d, #e8f3fa36);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(7.6px);
+    -webkit-backdrop-filter: blur(7.6px);
+    border: 1px solid rgb(255, 255, 255);
+}
+
+.saldo {
+    font-size: 150px;
+}
+
+.ico-btn {
+    
+    border: solid #3b5440;
+    border-radius: 25px;
+    color: #3b5440; 
+    padding: 5px 20px; 
+    font-size: 20px; 
+    cursor: pointer;
+}
+
+.ico-btn:hover {
+    background-color: #84a78c;
+    border: solid #84a78c;
+    color: #ebd3b8; 
+  }
+
+.red-btn {
+    
+    border: solid #af2d2d;
+    border-radius: 25px;
+    color: #af2d2d; 
+    padding: 5px 20px; 
+    font-size: 20px; 
+    cursor: pointer;
+}
+
+.red-btn:hover {
+    background-color: #db5a5a;
+    border: solid #db5a5a;
+    color: #330101; 
+}
+
+.y-btn {
+    
+    border: solid #ebd3b8;
+    border-radius: 25px;
+    color: #30353b; 
+    padding: 5px 20px; 
+    font-size: 20px; 
+    cursor: pointer;
+}
+
+
+.forms {
+    background-image: linear-gradient( #cef8eb4d, #e8f3fa36);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(7.6px);
+    -webkit-backdrop-filter: blur(7.6px);
+    border: 1px solid rgb(255, 255, 255);
+    margin-top: 3%;
+}
