@@ -1,90 +1,79 @@
+<?php
+include '../../Back-end/produtoController.php';
+$retorno = listarProdutos();
+$produtos = json_decode($retorno, true);
+?>
+
+
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Listagem de Produtos</title>
-  <!-- Bootstrap CSS -->
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-  <!-- jQuery -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos</title>
+    <link rel='stylesheet' href='../assets/css/bootstrap.css'>
+    <script src="../assets/js/bootstrap.bundle.js"></script>
+    <link rel='stylesheet' href='../assets/css/css.css'>
 </head>
-<body>
-  <div class="container">
-    <h1>Listagem de Produtos</h1>
-    <!-- Botão Inserir -->
-    <a href="inserir_produto.php" class="btn btn-primary mb-3">Inserir Produto</a>
-    <table class="table" id="tabelaProdutos">
-      <thead>
-        <tr>
-          <th>Código</th>
-          <th>Descrição</th>
-          <th>Status</th>
-          <th>Tempo de Garantia</th>
-          <th>Ações</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- Os produtos serão listados aqui via JavaScript -->
-      </tbody>
-    </table>
-  </div>
 
-  <script>
-    $(document).ready(function() {
-      // Função para listar os produtos ao carregar a página
-      listarProdutos();
+<body class="bg">
 
-      function listarProdutos() {
-        $.ajax({
-          url: 'produtosController.php?action=listar', // URL da sua função no backend para listar os produtos
-          type: 'GET',
-          dataType: 'json',
-          success: function(data) {
-            // Limpa a tabela de produtos
-            $('#tabelaProdutos tbody').empty();
+    <?php require_once "../navBar.php"; ?>
 
-            // Preenche a tabela com os produtos retornados pelo backend
-            $.each(data, function(index, produto) {
-              $('#tabelaProdutos tbody').append(
-                '<tr>' +
-                '<td>' + produto.codigo + '</td>' +
-                '<td>' + produto.descricao + '</td>' +
-                '<td>' + produto.statusProduto + '</td>' +
-                '<td>' + produto.tempo_garantia + '</td>' +
-                '<td>' +
-                '<a href="atualizar_produto.php?id=' + produto.id + '" class="btn btn-primary">Atualizar</a> ' +
-                '<button onclick="excluirProduto(' + produto.id + ')" class="btn btn-danger">Excluir</button>' +
-                '</td>' +
-                '</tr>'
-              );
-            });
-          }
-        });
-      }
+    
+    <div class="container cont-marg">
+        <div class="row justify-content-md-start">
+            
+            <div class="col-md-12 col-lg-12">
+                <div class="card glass p-4" style="width: 100%; margin-top: 2px">
+                    <h1 class="card-title">Produtos</h1>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Código</th>
+                                <th scope="col">Descrição</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Garantia</th>
+                                <th scope="col">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($produtos as $produto): ?>
+                                <tr>
+                                    <td><?php echo $produto['codigo']; ?></td>
+                                    <td><?php echo $produto['descricao']; ?></td>
+                                    <td><?php echo $produto['statusproduto']; ?></td>
+                                    <td><?php echo $produto['tempo_garantia']; ?></td>
+                                    <td>
+                                        <a href="editarProduto.php?id=<?php echo $produto['id']; ?>" class="ico-btn">
+                                            <i>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                                                </svg>
+                                            </i>
+                                        </a>
+                                        <a href="apagarProduto.php?id=<?php echo $produto['id']; ?>" class="ico-btn">
+                                            <i>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                                </svg>
+                                            </i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+        </div>
+    </div>
 
-      // Função para excluir um produto
-      function excluirProduto(id) {
-        if (confirm('Tem certeza que deseja excluir este produto?')) {
-          $.ajax({
-            url: 'produtosController.php', // URL da sua função no backend para excluir o produto
-            type: 'POST',
-            data: { id: id, action: 'excluir' },
-            dataType: 'json',
-            success: function(response) {
-              // Exibe uma mensagem de sucesso ou erro
-              if (response.success) {
-                alert('Produto excluído com sucesso!');
-                // Atualiza a lista de produtos após excluir o produto
-                listarProdutos();
-              } else {
-                alert('Erro ao excluir o produto: ' + response.error);
-              }
-            }
-          });
-        }
-      }
-    });
-  </script>
 </body>
+
 </html>
