@@ -85,5 +85,19 @@ function excluirProduto($id) {
     pg_close($conexao);
 }
 
+// Verifica se um produto está cadastrado
+function produtoCadastrado($produto_id) {
+    $retornoProdutos = listarProdutos();
+    $produtos = json_decode($retornoProdutos, true);
+
+    foreach ($produtos as $produto) {
+        if ($produto['id'] == $produto_id) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 
 ?>
