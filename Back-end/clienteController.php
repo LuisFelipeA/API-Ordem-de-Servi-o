@@ -12,8 +12,12 @@ function inserirCliente($nome, $cpf, $endereco) {
     if (!$resultado) {
         return json_encode(array("error" => pg_last_error($conexao)));
     }
+    else {
+        return listarIdUltimoClienteCadastrado();
+    }
 
     pg_close($conexao);
+    
 }
 
 // Listar Todos Clientes
@@ -85,5 +89,53 @@ function excluirCliente($id) {
     pg_close($conexao);
 }
 
+// Verifica se um cliente está cadastrado
+function clienteCadastrado($cliente_id) {
+    $retornoClientes = listarClientes();
+    $clientes = json_decode($retornoClientes, true);
+
+    foreach ($clientes as $cliente) {
+        if ($cliente['id'] == $cliente_id) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+// Buscar ultimo Cliente Criado
+
+function listarIdUltimoClienteCadastrado() {
+    $conexao = conectarBanco();
+    $query = "SELECT MAX(id) FROM telecontrol.clientes";
+    $resultado = pg_query($conexao, $query);
+
+    if ($resultado) {
+        $id = pg_fetch_result($resultado, 0, 0);
+        return json_encode(array("id" => $id));
+    } else {
+        return json_encode(array("error" => pg_last_error($conexao)));
+    }
+
+    pg_close($conexao);
+}
+
+
+
+
+// function listarIdUltimoClienteCadastrado() {
+//     $conexao = conectarBanco();
+//     $query = "SELECT MAX(id) FROM telecontrol.clientes";
+//     $resultado = pg_query($conexao, $query);
+
+//     if ($resultado) {
+//         $id = pg_fetch_result($resultado, 0);
+//         return json_encode(array("id" => $id));
+//     } else {
+//         return json_encode(array("error" => pg_last_error($conexao)));
+//     }
+
+//     pg_close($conexao);
+// }
 
 ?>

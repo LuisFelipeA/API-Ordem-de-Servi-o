@@ -23,7 +23,7 @@ include 'Back-end/ordemDeServicoController.php';
 //inserirOrdemDeServico("1", "2000-01-01", "1", "1");
 //atualizarOrdemDeServico("2", "300", "20-01-2005", "1", "3");
 //excluirOrdemDeServico("1");
-echo listarOrdemDeServicos();
+//echo listarOrdemDeServicos();
 //echo listarOrdemDeServicoPorId("2");
 
 

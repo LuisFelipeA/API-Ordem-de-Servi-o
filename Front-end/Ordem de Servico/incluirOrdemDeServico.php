@@ -1,6 +1,8 @@
 <?php
 include '../../Back-end/ordemDeServicoController.php';
 include '../../Back-end/produtoController.php';
+include '../../Back-end/clienteController.php';
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $numero_ordem = $_POST['numero_ordem'];
@@ -9,12 +11,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cliente_id = $_POST['cliente_id'];
 
     if (produtoCadastrado($produto_id)) {
-        inserirOrdemDeServico($numero_ordem, $data_abertura, $produto_id, $cliente_id);
-        header("Location: /api-ordem-de-servico/Front-end/Ordem de Servico/listarOrdensDeServico.php");
-        exit();
+        if (clienteCadastrado($cliente_id)) {
+            inserirOrdemDeServico($numero_ordem, $data_abertura, $produto_id, $cliente_id);
+            header("Location: /api-ordem-de-servico/Front-end/Ordem de Servico/listarOrdensDeServico.php");
+            exit();
+        } else {
+            //$ClienteNaoCadastrado = "Erro: O Cliente com o ID $produto_id não está cadastrado.";
+            $idGerado = inserirCliente("", "", "");
+            $idGerado = json_decode($idGerado)->id;
+            inserirOrdemDeServico($numero_ordem, $data_abertura, $produto_id, $idGerado);
+            header("Location: /api-ordem-de-servico/Front-end/Cliente/editarCliente.php?id=$idGerado");
+            exit();
+
+        }
     } else {
-        $mensagemErro = "Erro: O produto com o ID $produto_id não está cadastrado.";
+        $ProdutoNaoCadastrado = "Erro: O produto com o ID $produto_id não está cadastrado.";
     }
+
 }
 ?>
 
@@ -40,9 +53,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="col-md-12 col-lg-12">
                 <div class="card glass p-4" style="width: 100%; margin-top: 2px">
                     <h1 class="card-title">Incluir Ordem de Serviço</h1>
-                    <?php if (!empty($mensagemErro)): ?>
+                    <?php if (!empty($ProdutoNaoCadastrado)): ?>
                     <div class="alert alert-danger" role="alert">
-                        <?php echo $mensagemErro; ?>
+                        <?php echo $ProdutoNaoCadastrado; ?>
                     </div>
                     <?php endif; ?>
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
