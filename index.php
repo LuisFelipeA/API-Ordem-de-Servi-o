@@ -20,10 +20,10 @@ include 'Back-end/ordemDeServicoController.php';
 //echo listarProdutoPorId("1");
 //excluirProduto("1");
 
-//inserirOrdemDeServico("200", "20-01-2007", "1", "3");
+//inserirOrdemDeServico("1", "2000-01-01", "1", "1");
 //atualizarOrdemDeServico("2", "300", "20-01-2005", "1", "3");
 //excluirOrdemDeServico("1");
-//echo listarOrdemDeServicos();
+echo listarOrdemDeServicos();
 //echo listarOrdemDeServicoPorId("2");
 
 

@@ -4,7 +4,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cpf = $_POST['cpf'];
     $nome = $_POST['nome'];
     $endereco = $_POST['endereco'];
-    $resultado = inserirCliente($nome, $cpf, $endereco);
+    inserirCliente($nome, $cpf, $endereco);
     header("Location: /api-ordem-de-servico/Front-end/Cliente/listarClientes.php");
     exit();
 }

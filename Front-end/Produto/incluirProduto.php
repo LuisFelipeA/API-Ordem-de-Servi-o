@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $statusProduto = $_POST['statusproduto'];
     $garantia = $_POST['garantia'];
 
-    $resultado = inserirProduto($codigo, $descricao, $statusProduto, $garantia);
+    inserirProduto($codigo, $descricao, $statusProduto, $garantia);
 
     header("Location: listarProdutos.php");
     exit();
@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <input type="text" class="form-control" id="statusproduto" name="statusproduto">
                         </div>
                         <div class="mb-3">
-                            <label for="garantia" class="form-label">Garantia</label>
+                            <label for="garantia" class="form-label">Garantia (Mês)</label>
                             <input type="text" class="form-control" id="garantia" name="garantia">
                         </div>
                         <button type="submit" class="btn btn-primary">Salvar</button>

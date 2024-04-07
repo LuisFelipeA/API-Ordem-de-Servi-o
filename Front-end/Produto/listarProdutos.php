@@ -35,7 +35,7 @@ $produtos = json_decode($retorno, true);
                                 <th scope="col">Código</th>
                                 <th scope="col">Descrição</th>
                                 <th scope="col">Status</th>
-                                <th scope="col">Garantia</th>
+                                <th scope="col">Garantia (Mês)</th>
                                 <th scope="col">Ações</th>
                             </tr>
                         </thead>

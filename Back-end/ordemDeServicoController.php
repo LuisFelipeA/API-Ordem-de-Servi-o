@@ -19,7 +19,15 @@ function inserirOrdemDeServico($numero_ordem, $data_abertura, $produto_id, $clie
 // Listar Todos OrdemDeServicos
 function listarOrdemDeServicos() {
     $conexao = conectarBanco();
-    $query = "SELECT * FROM telecontrol.ordem_servico os JOIN telecontrol.clientes c ON c.id = os.cliente_id JOIN telecontrol.produtos p ON p.id = os.produto_id ";
+    $query = "SELECT os.id as ordem_servico_id, os.numero_ordem, os.data_abertura, 
+                 c.id as cliente_id, c.nome, c.cpf, c.endereco,
+                 p.id as produto_id, p.codigo, p.descricao, 
+                 p.statusProduto, p.tempo_garantia
+          FROM telecontrol.ordem_servico os 
+          JOIN telecontrol.clientes c ON c.id = os.cliente_id 
+          JOIN telecontrol.produtos p ON p.id = os.produto_id";
+
+    //$query = "SELECT * FROM telecontrol.ordem_servico os JOIN telecontrol.clientes c ON c.id = os.cliente_id JOIN telecontrol.produtos p ON p.id = os.produto_id ";
     $resultado = pg_query($conexao, $query);
 
     if ($resultado) {
@@ -38,7 +46,14 @@ function listarOrdemDeServicos() {
 // Listar Por ID
 function listarOrdemDeServicoPorId($id) {
     $conexao = conectarBanco();
-    $query = "SELECT * FROM telecontrol.ordem_servico os JOIN telecontrol.clientes c ON c.id = os.cliente_id JOIN telecontrol.produtos p ON p.id = os.produto_id where os.id = $1";
+    $query = "SELECT os.id as ordem_servico_id, os.numero_ordem, os.data_abertura, 
+                    c.id as cliente_id, c.nome, c.cpf, c.endereco,
+                    p.id as produto_id, p.codigo, p.descricao, 
+                    p.statusProduto, p.tempo_garantia
+                FROM telecontrol.ordem_servico os 
+                    JOIN telecontrol.clientes c ON c.id = os.cliente_id 
+                    JOIN telecontrol.produtos p ON p.id = os.produto_id
+                WHERE os.id = $1";
     $valores = array($id);
     $resultado = pg_query_params($conexao, $query, $valores);
 
